@@ -1,0 +1,30 @@
+﻿@page
+@model WebSampleNet6.Pages.Categories.CreateModel
+
+@if (Model.Category != null)
+{
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="@Model.Category.Name" class="form-label"></label>
+            <input asp-for="@Model.Category.Name" class="form-control" placeholder="">
+            <span asp-validation-for="@Model.Category.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.Category.DisplayOrder" class="form-label"></label>
+            <input asp-for="@Model.Category.DisplayOrder" class="form-control">
+            <span asp-validation-for="@Model.Category.DisplayOrder" class="text-danger"></span>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Create">
+    </form>
+}
+
+@*Add client-side data validation*@
+@section Scripts
+{
+    @*    
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    *@
+    <partial name="_ValidationScriptsPartial" />
+}

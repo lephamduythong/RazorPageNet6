@@ -1,0 +1,37 @@
+﻿@page
+@model WebSampleNet6.Pages.Categories.IndexModel
+
+<div class="container">
+    <h1>Category List</h1>
+    <div>
+        <a class="btn btn-primary" asp-page="Create"><i class="bi bi-plus-square"></i>&nbsp; Create</a>
+    </div>
+    <br />
+    <table class="table table-bordered table-striped" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Display Order</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Categories != null)
+                @foreach (var category in Model.Categories)
+                {
+                    <tr>
+                        <td width="50%">@category.Name</td>
+                        <td width="20%">@category.DisplayOrder</td>
+                        <td>
+                            <a class="btn btn-primary" asp-page="Edit" asp-route-id="@category.Id"><i class="bi bi-pencil-square"></i>&nbsp</a>
+                            <a class="btn btn-danger" asp-page="Delete" asp-route-id="@category.Id"><i class="bi bi-trash3"></i>&nbsp</a>
+                        </td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+    @if (Model.Categories == null)
+    {
+        <h2>No Data</h2>
+    }
+</div>
