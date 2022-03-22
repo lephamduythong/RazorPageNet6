@@ -1,0 +1,11 @@
+﻿@if (TempData[Constants.NOTIFICATION] != null)
+{
+    <script>
+        $(document).ready(function(){
+            $(".toast").toast({
+                autohide: true
+            });
+        });
+        console.log("Toast");
+    </script>
+}

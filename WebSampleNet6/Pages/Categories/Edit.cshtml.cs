@@ -27,6 +27,7 @@ namespace WebSampleNet6.Pages.Categories
         {
             _db.Categories.Update(Category);
             await _db.SaveChangesAsync();
+            TempData[Constants.NOTIFICATION] = "Success;Category was editted successfully";
             return RedirectToPage("Index");
         }
     }

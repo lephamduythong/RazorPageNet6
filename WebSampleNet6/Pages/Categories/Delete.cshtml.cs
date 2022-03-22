@@ -30,6 +30,7 @@ namespace WebSampleNet6.Pages.Categories
                 _db.Categories.Remove(Category);
             }
             await _db.SaveChangesAsync();
+            TempData[Constants.NOTIFICATION] = "Success;Category was deleted successfully";
             return RedirectToPage("Index");
         }
     }

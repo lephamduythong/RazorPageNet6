@@ -43,6 +43,7 @@ namespace WebSampleNet6.Pages.Categories
             {
                 await _db.AddAsync(Category);
                 _db.SaveChanges();
+                TempData[Constants.NOTIFICATION] = "Success;Category was created successfully";
                 return RedirectToPage("Index");
             }
 
