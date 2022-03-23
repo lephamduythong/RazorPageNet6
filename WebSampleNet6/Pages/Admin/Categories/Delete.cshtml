@@ -1,5 +1,5 @@
 ﻿@page
-@model WebSampleNet6.Pages.Categories.EditModel
+@model WebSampleNet6.Pages.Admin.Categories.DeleteModel
 
 @if (Model.Category != null)
 {
@@ -8,16 +8,16 @@
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="mb-3">
             <label asp-for="@Model.Category.Name" class="form-label"></label>
-            <input asp-for="@Model.Category.Name" class="form-control">
+            <input asp-for="@Model.Category.Name" disabled class="form-control">
             <span asp-validation-for="@Model.Category.Name" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="@Model.Category.DisplayOrder" class="form-label"></label>
-            <input asp-for="@Model.Category.DisplayOrder" class="form-control">
+            <input asp-for="@Model.Category.DisplayOrder" disabled class="form-control">
             <span asp-validation-for="@Model.Category.DisplayOrder" class="text-danger"></span>
         </div>
         <button class="btn btn-secondary" asp-page="Index">Back</button>
-        <input type="submit" class="btn btn-primary" value="Confirm">
+        <input type="submit" class="btn btn-danger" value="Delete">
     </form>
 }
 

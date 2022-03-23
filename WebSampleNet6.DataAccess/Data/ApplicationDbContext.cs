@@ -10,5 +10,6 @@ namespace WebSampleNet6.DataAccess.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<FoodType> FoodTypes { get; set; }
     }
 }

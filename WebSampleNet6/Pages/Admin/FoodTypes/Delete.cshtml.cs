@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebSampleNet6.DataAccess.Data;
 using WebSampleNet6.Models;
 
-namespace WebSampleNet6.Pages.Categories
+namespace WebSampleNet6.Pages.Admin.FoodTypes
 {
     [BindProperties]
     public class DeleteModel : PageModel
     {
         private readonly ApplicationDbContext _db;
 
-        public Category? Category { get; set; }
+        public FoodType? FoodType { get; set; }
 
         public DeleteModel(ApplicationDbContext db)
         {
@@ -19,15 +19,15 @@ namespace WebSampleNet6.Pages.Categories
 
         public async Task<IActionResult> OnGet(int id)
         {
-            Category = await _db.Categories.FindAsync(id);
+            FoodType = await _db.FoodTypes.FindAsync(id);
             return Page();
         }
 
         public async Task<IActionResult> OnPost()
         {
-            if (Category != null)
+            if (FoodType != null)
             {
-                _db.Categories.Remove(Category);
+                _db.FoodTypes.Remove(FoodType);
             }
             await _db.SaveChangesAsync();
             TempData[Constants.NOTIFICATION] = "Success;Category was deleted successfully";

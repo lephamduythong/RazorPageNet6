@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebSampleNet6.DataAccess.Data;
 using WebSampleNet6.Models;
 
-namespace WebSampleNet6.Pages.Categories
+namespace WebSampleNet6.Pages.Admin.Categories
 {
     [BindProperties]
     public class CreateModel : PageModel
