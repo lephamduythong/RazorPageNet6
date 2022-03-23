@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebSampleNet6.Models;
 
-namespace WebSampleNet6.Data
+#nullable disable
+
+namespace WebSampleNet6.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

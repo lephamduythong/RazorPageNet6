@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WebSampleNet6.Migrations
+namespace WebSampleNet6.DataAccess.Migrations
 {
     public partial class AddCategory : Migration
     {

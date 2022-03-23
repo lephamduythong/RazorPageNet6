@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebSampleNet6.Data;
+using WebSampleNet6.DataAccess.Data;
 using WebSampleNet6.Models;
 
 namespace WebSampleNet6.Pages.Categories
