@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebSampleNet6.DataAccess.Data;
+using WebSampleNet6.DataAccess.Repository.IRepository;
 using WebSampleNet6.Models;
 
 namespace WebSampleNet6.Pages.Admin.FoodTypes
@@ -8,18 +8,18 @@ namespace WebSampleNet6.Pages.Admin.FoodTypes
     [BindProperties]
     public class EditModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _db;
 
         public FoodType? FoodType { get; set; }
 
-        public EditModel(ApplicationDbContext db)
+        public EditModel(IUnitOfWork db)
         {
             _db = db;
         }
 
         public async Task<IActionResult> OnGet(int id)
         {
-            FoodType = await _db.FoodTypes.FindAsync(id);
+            FoodType = _db.FoodTypeRepository.GetFirstOrDefault(foodType => foodType.Id == id);
             return Page();
         }
         
@@ -27,8 +27,8 @@ namespace WebSampleNet6.Pages.Admin.FoodTypes
         {
             if (FoodType != null)
             {
-                _db.FoodTypes.Update(FoodType);
-                await _db.SaveChangesAsync();
+                _db.FoodTypeRepository.Update(FoodType);
+                _db.Save();
                 TempData[Constants.NOTIFICATION] = "Success;FoodType was editted successfully";
             }
             return RedirectToPage("Index");

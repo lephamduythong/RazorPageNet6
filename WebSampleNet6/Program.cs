@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebSampleNet6.DataAccess.Data;
+using WebSampleNet6.DataAccess.Repository;
+using WebSampleNet6.DataAccess.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
 ));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebSampleNet6.DataAccess.Data;
+using WebSampleNet6.DataAccess.Repository.IRepository;
 using WebSampleNet6.Models;
 
 namespace WebSampleNet6.Pages.Admin.Categories
@@ -8,18 +8,18 @@ namespace WebSampleNet6.Pages.Admin.Categories
     [BindProperties]
     public class EditModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _db;
 
         public Category? Category { get; set; }
 
-        public EditModel(ApplicationDbContext db)
+        public EditModel(IUnitOfWork db)
         {
             _db = db;
         }
 
         public async Task<IActionResult> OnGet(int id)
         {
-            Category = await _db.Categories.FindAsync(id);
+            Category = _db.CategoryRepository.GetFirstOrDefault(category => category.Id == id);
             return Page();
         }
         
@@ -27,8 +27,8 @@ namespace WebSampleNet6.Pages.Admin.Categories
         {
             if (Category != null)
             {
-                _db.Categories.Update(Category);
-                await _db.SaveChangesAsync();
+                _db.CategoryRepository.Update(Category);
+                _db.Save();
                 TempData[Constants.NOTIFICATION] = "Success;Category was editted successfully";
             }
             return RedirectToPage("Index");

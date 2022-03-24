@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebSampleNet6.DataAccess.Data;
+using WebSampleNet6.DataAccess.Repository.IRepository;
 using WebSampleNet6.Models;
 
 namespace WebSampleNet6.Pages.Admin.Categories
@@ -8,12 +8,12 @@ namespace WebSampleNet6.Pages.Admin.Categories
     [BindProperties]
     public class CreateModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _db;
 
         //[BindProperty]
         public Category? Category { get; set; }
 
-        public CreateModel(ApplicationDbContext db)
+        public CreateModel(IUnitOfWork db)
         {
             Category = new Category();
             _db = db;
@@ -41,8 +41,8 @@ namespace WebSampleNet6.Pages.Admin.Categories
 
             if (ModelState.IsValid)
             {
-                await _db.AddAsync(Category);
-                _db.SaveChanges();
+                _db.CategoryRepository.Add(Category);
+                _db.Save();
                 TempData[Constants.NOTIFICATION] = "Success;Category was created successfully";
                 return RedirectToPage("Index");
             }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebSampleNet6.DataAccess.Data;
+using WebSampleNet6.DataAccess.Repository.IRepository;
 using WebSampleNet6.Models;
 
 namespace WebSampleNet6.Pages.Admin.FoodTypes
@@ -8,12 +9,12 @@ namespace WebSampleNet6.Pages.Admin.FoodTypes
     [BindProperties]
     public class CreateModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _db;
 
         //[BindProperty]
         public FoodType? FoodType { get; set; }
 
-        public CreateModel(ApplicationDbContext db)
+        public CreateModel(IUnitOfWork db)
         {
             FoodType = new FoodType();
             _db = db;
@@ -35,8 +36,8 @@ namespace WebSampleNet6.Pages.Admin.FoodTypes
 
             if (ModelState.IsValid)
             {
-                await _db.AddAsync(FoodType);
-                _db.SaveChanges();
+                _db.FoodTypeRepository.Add(FoodType);
+                _db.Save();
                 TempData[Constants.NOTIFICATION] = "Success;Category was created successfully";
                 return RedirectToPage("Index");
             }
