@@ -2,8 +2,8 @@
 
 namespace WebSampleNet6.DataAccess.Repository.IRepository
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IMenuItemRepository : IRepository<FoodType>
     {
-        void Update(Category category);
+        void Update(MenuItem menuItem);
     }
 }

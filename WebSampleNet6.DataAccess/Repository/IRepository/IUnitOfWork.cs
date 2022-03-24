@@ -10,6 +10,8 @@ namespace WebSampleNet6.DataAccess.Repository.IRepository
     {
         ICategoryRepository CategoryRepository { get; }
         IFoodTypeRepository FoodTypeRepository { get; }
+        IMenuItemRepository MenuItemRepository { get; }
+        
         void Save();
     }
 }

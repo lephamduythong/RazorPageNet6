@@ -10,9 +10,9 @@ namespace WebSampleNet6.DataAccess.Repository.IRepository
 
         }
 
-        public void Update(FoodType category)
+        public void Update(FoodType foodType)
         {
-            _db.Update(category);
+            _db.Update(foodType);
         }
     }
 }

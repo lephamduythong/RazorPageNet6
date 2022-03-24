@@ -12,12 +12,14 @@ namespace WebSampleNet6.DataAccess.Repository
         public ICategoryRepository CategoryRepository { get; private set; }
 
         public IFoodTypeRepository FoodTypeRepository { get; private set; }
+        public IMenuItemRepository MenuItemRepository { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             CategoryRepository = new CategoryRepository(_db);
             FoodTypeRepository = new FoodTypeRepository(_db);
+            MenuItemRepository = new MenuItemRepository(_db);
         }
          
         public void Save()
